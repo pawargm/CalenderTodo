@@ -2,24 +2,15 @@ import YearPanel from './YearPanel';
 import { useState } from 'react';
 
 
-
-
-
-
 function CalenderPanel() {
 
     const [month, setMonth] = useState("Jan");
-
 
     const handleChangeMonth = (event) => {
         setMonth(event.target.value);
     }
 
-
-
     return (
-
-        
     <div className="CalenderPanel">
         <select value={month} onChange={handleChangeMonth}>
             <option value="Jan">Jan</option>

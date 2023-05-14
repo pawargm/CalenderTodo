@@ -1,18 +1,17 @@
 import DatePanel from './DatePanel';
 import './MonthPanel.css';
 
-export function GetRowDate( days ){
+export function GetRowDate( days, month ){
 
     let indexD = 1;
     let arr = [];
-    
+
     for(let no = 0; no < 7; no++){
         arr[no] = [];
     }
     for(let no = 0; no < 7; no++){
         for(let tmp = 0; tmp < 5; tmp++){
-            const buttonRW = (<DatePanel num={indexD} />);
-            arr[no][tmp]= buttonRW;
+            arr[no].push(<DatePanel date1={indexD} month1={month} />);
             indexD++;
             if(indexD > days)
                 break;
@@ -27,8 +26,7 @@ function MonthPanel({month}){
 
     let indexD = 0;
     let arrRw = []; 
-   
-
+    
     let days = {
       "Jan":31,
       "Feb":28,
@@ -44,8 +42,7 @@ function MonthPanel({month}){
       "Dec":31  
     };
 
-    const jsxCell = GetRowDate(days[month]);
-
+    const jsxCell = GetRowDate(days[month], month);
     for(let rwIndex = 0 ; rwIndex < 7; rwIndex++){
      const jsxRw = (   <tr>
             <th>{jsxCell[rwIndex]}</th>                
@@ -54,7 +51,7 @@ function MonthPanel({month}){
         
 
     }
-    return <table> {arrRw} </table>;
+    return (<><div className={month}><table> {arrRw} </table></div></>);
 }
 
 export default MonthPanel;
